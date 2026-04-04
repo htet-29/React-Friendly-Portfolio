@@ -2,6 +2,9 @@ import { NavLink } from 'react-router';
 import { FaLaptopCode } from 'react-icons/fa';
 
 const Navbar = () => {
+  const base = 'transition hover:text-blue-400';
+  const active = 'text-blue-400 font-semibold';
+
   return (
     <div className="sticky top-0 z-50 border-b border-gray-700 bg-gray-800 shadow-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -13,11 +16,21 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden items-center gap-6 md:flex">
           <div className="space-x-4 text-sm text-gray-300">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/projects">Projects</NavLink>
-            <NavLink to="/blog">Blog</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? active : base)} to="/">
+              Home
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? active : base)} to="/projects">
+              Projects
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? active : base)} to="/blog">
+              Blog
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? active : base)} to="/about">
+              About
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? active : base)} to="/contact">
+              Contact
+            </NavLink>
           </div>
         </div>
       </div>
