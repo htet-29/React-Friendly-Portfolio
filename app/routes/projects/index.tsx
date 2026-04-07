@@ -11,20 +11,42 @@ export async function loader({ request }: Route.LoaderArgs): Promise<{ projects:
   return { projects: data };
 }
 const ProjectsPage = ({ loaderData }: Route.ComponentProps) => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { projects } = loaderData as { projects: Project[] };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 4;
+  const categories = ['All', ...new Set(projects.map((project) => project.category))];
+  const filteredProjects =
+    selectedCategory === 'All'
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
 
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const projectsPerPage = 4;
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
   const indexOfLast = currentPage * projectsPerPage;
   const indexOfFirst = indexOfLast - projectsPerPage;
-  const currentProjects = projects.slice(indexOfFirst, indexOfLast);
+  const currentProjects = filteredProjects.slice(indexOfFirst, indexOfLast);
 
   return (
     <>
       <h2 className="mb-8 text-3xl font-bold text-white">🚀 Projects</h2>
+
+      <div className="mb-8 flex flex-wrap gap-2">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => {
+              setSelectedCategory(category);
+              setCurrentPage(1);
+            }}
+            className={`cursor-pointer rounded px-3 py-1 text-sm ${category === selectedCategory ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-200'}`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
         {currentProjects.map((project) => (

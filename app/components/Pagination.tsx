@@ -5,6 +5,8 @@ type PaginationProps = {
 };
 
 const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPageChange }) => {
+  if (totalPages <= 1) return null;
+
   return (
     <div className="mt-8 flex justify-center gap-2">
       {Array.from({ length: totalPages }, (_, idx) => (
