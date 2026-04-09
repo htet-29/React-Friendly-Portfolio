@@ -15,7 +15,7 @@ export const loader = async ({ request }: Route.LoaderArgs): Promise<{ posts: Po
 
 const Blog = ({ loaderData }: Route.ComponentProps) => {
   const { posts } = loaderData;
-  console.log(posts);
+
   return (
     <div className="mx-auto mt-10 max-w-3xl bg-gray-900 px-6 py-6">
       <h2 className="mb-8 text-3xl font-bold text-white">📑 Blogs</h2>
