@@ -28,7 +28,7 @@ const BlogPostDetailsPage = ({ loaderData }: Route.ComponentProps) => {
   return (
     <div className="mx-auto max-w-3xl bg-gray-900 px-6 py-12">
       <h1 className="mb-2 text-3xl font-bold text-blue-400">{postMeta.title}</h1>
-      <p className="mb-6 text-sm text-gray-400">{new Date(postMeta.date).toLocaleDateString()}</p>
+      <p className="mb-6 text-sm text-gray-400">{new Date(postMeta.date).toDateString()}</p>
       <div className="prose prose-invert mb-12 max-w-none">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
