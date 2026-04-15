@@ -5,7 +5,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <Link
       className="block h-full transform transition duration-300 hover:scale-[1.02]"
-      to={`/projects/${project.id}`}
+      to={`/projects/${project.documentId}`}
     >
       <div className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-700 bg-gray-800 shadow-sm transition hover:shadow-md">
         <img src={project.image} alt={project.title} className="h-40 w-full object-cover" />
